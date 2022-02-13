@@ -1,0 +1,1 @@
+enum LOGINTYPE { direct, google}
