@@ -80,7 +80,7 @@ class _InitPageState extends State<InitPage> {
           dataLogin = state.userLogin;
 
           return MyHomePage(
-              title: dataLogin.email,
+              title: dataLogin.displayName,
               dataLogin: dataLogin,);
         }
 
