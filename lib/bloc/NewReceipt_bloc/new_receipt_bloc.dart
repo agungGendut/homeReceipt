@@ -22,6 +22,7 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
   Stream<NewReceiptState> mapEventToState(
       NewReceiptEvent event,
       ) async* {
+
     if (event is GetCategoryData){
       CategoryReceipt respo = await ApiRepository.getCategoryData();
       if (respo.status == true){
@@ -35,6 +36,7 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
     }
 
     if (event is GetNewReceiptData){
+      yield ReceiptUnitial();
       NewReceipt respo = await ApiRepository.getNewReceiptData();
       if (respo.status == true){
         this.newReceipt = respo;

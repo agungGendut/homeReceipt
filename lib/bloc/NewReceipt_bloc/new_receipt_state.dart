@@ -5,6 +5,8 @@ abstract class NewReceiptState {}
 
 class NewReceiptInitial extends NewReceiptState {}
 
+class ReceiptUnitial extends NewReceiptState {}
+
 class ReceiptInitial extends NewReceiptState {
   final NewReceipt newReceipt;
   final CategoryReceipt categoryReceipt;

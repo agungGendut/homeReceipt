@@ -1,79 +1,41 @@
 {
   "project_info": {
-    "project_number": "136469522738",
-    "firebase_url": "https://courseapp-e6053.firebaseio.com",
-    "project_id": "courseapp-e6053",
-    "storage_bucket": "courseapp-e6053.appspot.com"
+    "project_number": "882278606649",
+    "project_id": "coreapps-a912f",
+    "storage_bucket": "coreapps-a912f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:136469522738:android:76cf03a3fac1b00ad9cf2b",
+        "mobilesdk_app_id": "1:882278606649:android:c0d69f4ac3e3503d96aae8",
         "android_client_info": {
           "package_name": "com.course.resepkita"
         }
       },
       "oauth_client": [
         {
-          "client_id": "136469522738-vmr18sfr0hmjvcc34398bpedasd5c7ll.apps.googleusercontent.com",
+          "client_id": "882278606649-22c2fksmvdprcjget7evv47i0ku67eru.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.course.resepkita",
-            "certificate_hash": "89c66b699290906abc3f0c50c4d4eded3df347e1"
+            "certificate_hash": "e14f5b52e375c994e822a54ab9d40013471a1459"
           }
         },
         {
-          "client_id": "136469522738-23efr3fqs7f2ts93s5gbq90jjtktfsa3.apps.googleusercontent.com",
+          "client_id": "882278606649-ofjuheigoolao4aek3d4q997j4suimd4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA--Yxu38iyRdDMPs3BdGhtZPeuM8rXFkw"
+          "current_key": "AIzaSyA6Fu_OpbiJ_hpm377f26aINkiVTzm0eN4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "136469522738-23efr3fqs7f2ts93s5gbq90jjtktfsa3.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:136469522738:android:1657d2b8bc28a702d9cf2b",
-        "android_client_info": {
-          "package_name": "com.example.courseapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "136469522738-bkn9551he7den51f2g3u2obtp9046s95.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.courseapp",
-            "certificate_hash": "82dbed3dc4932d77f0c9746700c8587833dc62b0"
-          }
-        },
-        {
-          "client_id": "136469522738-23efr3fqs7f2ts93s5gbq90jjtktfsa3.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA--Yxu38iyRdDMPs3BdGhtZPeuM8rXFkw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "136469522738-23efr3fqs7f2ts93s5gbq90jjtktfsa3.apps.googleusercontent.com",
+              "client_id": "882278606649-ofjuheigoolao4aek3d4q997j4suimd4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

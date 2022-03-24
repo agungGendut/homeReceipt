@@ -92,7 +92,12 @@ class MainReceiptScreenState extends State<MainReceiptScreen>{
           ),
         ),
       ),
-      body: BlocBuilder<NewReceiptBloc, NewReceiptState>(
+      body: BlocConsumer<NewReceiptBloc, NewReceiptState>(
+        listener: (context, state){
+          if (state is ReceiptUnitial){
+            return LoadingPage();
+          }
+        },
         builder: (context, state){
           if (state is ReceiptInitial){
             listReceipt.addAll(state.listReceipt.results);

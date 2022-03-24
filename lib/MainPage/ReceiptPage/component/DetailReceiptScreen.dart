@@ -7,7 +7,6 @@ import 'package:resepkita/bloc/NewReceipt_bloc/new_receipt_bloc.dart';
 import 'package:resepkita/model/DetailReceiptData.dart';
 import 'package:resepkita/utils/LoadingPage.dart';
 
-import '../../HomeScreen.dart';
 import '../MainReceiptScreen.dart';
 
 class DetailReceiptScreen extends StatefulWidget{
