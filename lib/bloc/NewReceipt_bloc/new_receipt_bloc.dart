@@ -16,12 +16,15 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
   ListReceipt listReceipt;
   CategoryReceipt categoryReceipt;
   DetailReceipt detailReceipt;
-  NewReceiptBloc() : super(NewReceiptInitial());
+  NewReceiptBloc() : super(NewReceiptInitial()){
+    on<NewReceiptEvent>((event, emit) async {
+      await mapEventToStates(event, emit);
+    });
+  }
 
-  @override
-  Stream<NewReceiptState> mapEventToState(
-      NewReceiptEvent event,
-      ) async* {
+  Future<void> mapEventToStates(
+      NewReceiptEvent event, Emitter<NewReceiptState> emit
+      ) async {
 
     if (event is GetCategoryData){
       CategoryReceipt respo = await ApiRepository.getCategoryData();
@@ -32,11 +35,11 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
     }
 
     if (event is SuccessGetCategoryData){
-      yield ReceiptInitial(categoryReceipt: event.categoryReceipt, newReceipt: this.newReceipt, listReceipt: this.listReceipt);
+      emit(ReceiptInitial(categoryReceipt: event.categoryReceipt, newReceipt: this.newReceipt, listReceipt: this.listReceipt));
     }
 
     if (event is GetNewReceiptData){
-      yield ReceiptUnitial();
+      emit(ReceiptUnitial());
       NewReceipt respo = await ApiRepository.getNewReceiptData();
       if (respo.status == true){
         this.newReceipt = respo;
@@ -45,7 +48,7 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
     }
 
     if (event is SuccessGetNewData){
-      yield ReceiptInitial(categoryReceipt: this.categoryReceipt, newReceipt: event.newReceipt, listReceipt: this.listReceipt);
+      emit(ReceiptInitial(categoryReceipt: this.categoryReceipt, newReceipt: event.newReceipt, listReceipt: this.listReceipt));
     }
 
     if (event is GetListReceiptData){
@@ -57,14 +60,14 @@ class NewReceiptBloc extends Bloc<NewReceiptEvent, NewReceiptState> {
     }
 
     if (event is SuccessGetListReceipt){
-      yield ReceiptInitial(categoryReceipt: this.categoryReceipt, newReceipt: this.newReceipt, listReceipt: event.listReceipt);
+      emit(ReceiptInitial(categoryReceipt: this.categoryReceipt, newReceipt: this.newReceipt, listReceipt: event.listReceipt));
     }
 
     if (event is GetDetailReceiptData){
       DetailReceipt detailRespo = await ApiRepository.getDetailReceiptData(event.key);
       if (detailRespo.status == true){
         this.detailReceipt = detailRespo;
-        yield DetailInitial(detailReceipt: this.detailReceipt);
+        emit(DetailInitial(detailReceipt: this.detailReceipt));
       }
     }
   }

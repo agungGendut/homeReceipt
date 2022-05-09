@@ -1,7 +1,7 @@
 class NewReceipt {
   String method;
   bool status;
-  List<Results> results;
+  List<ResultReceipt> results;
 
   NewReceipt({this.method, this.status, this.results});
 
@@ -9,9 +9,9 @@ class NewReceipt {
     method = json['method'];
     status = json['status'];
     if (json['results'] != null) {
-      results = <Results>[];
+      results = <ResultReceipt>[];
       json['results'].forEach((v) {
-        results.add(new Results.fromJson(v));
+        results.add(new ResultReceipt.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class NewReceipt {
   }
 }
 
-class Results {
+class ResultReceipt {
   String title;
   String thumb;
   String key;
@@ -35,7 +35,7 @@ class Results {
   String portion;
   String dificulty;
 
-  Results(
+  ResultReceipt(
       {this.title,
         this.thumb,
         this.key,
@@ -43,7 +43,7 @@ class Results {
         this.portion,
         this.dificulty});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  ResultReceipt.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     thumb = json['thumb'];
     key = json['key'];

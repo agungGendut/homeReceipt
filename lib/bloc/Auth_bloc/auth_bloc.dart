@@ -13,14 +13,17 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   User userLogin;
-  AuthBloc() : super(LoadingInitial());
-
-  @override
-  Stream<AuthState> mapEventToState(
-      AuthEvent event,
-      ) async* {
+  AuthBloc() : super(LoadingInitial()){
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final GoogleSignIn _googleSignIn = GoogleSignIn();
+    on<AuthEvent>((event, emit) async {
+      await mapEventToStates(event, emit, _auth, _googleSignIn);
+    });
+  }
+
+  Future<void> mapEventToStates(
+      AuthEvent event, Emitter<AuthState> emit, FirebaseAuth _auth, GoogleSignIn _googleSignIn
+      ) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if (event is CheckedAuth) {
@@ -34,14 +37,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (isLogin == true) {
         print("masuk klo masih login");
         if (_auth.currentUser != null){
-          print("data check auth ${_auth.currentUser}");
+          // print("data check auth ${_auth.currentUser}");
           this.userLogin = _auth.currentUser;
-          yield AuthInitial(this.userLogin.displayName, this.userLogin);
+          emit(AuthInitial(this.userLogin.displayName, this.userLogin));
         }
       } else {
         print("masuk klo belum login");
         await sharedPreferences.setBool('login_status', false);
-        yield UnAuthInitial();
+        emit(UnAuthInitial());
       }
     }
 
@@ -62,11 +65,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     if (event is LoginCredential) {
-      yield LoadingInitial();
+      emit(LoadingInitial());
       if (_auth.currentUser != null) _auth.signOut();
       UserCredential authResult = await _auth.signInWithCredential(event.credential);
       User user = authResult.user;
-      print("User firebase1: ${authResult.user}");
+      // print("User firebase1: ${authResult.user}");
       if (user.emailVerified == true){
         print("${user.emailVerified}");
         add(AuthSuccess(event.context, user));
@@ -76,9 +79,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is AuthSuccess) {
       await sharedPreferences.setBool('login_status', true);
       // await sharedPreferences.setString('login_data', json.encode(event.auth));
-      print("User firebase2: ${event.auth}");
+      // print("User firebase2: ${event.auth}");
       this.userLogin = event.auth;
-      yield AuthInitial(this.userLogin.displayName, this.userLogin);
+      emit(AuthInitial(this.userLogin.displayName, this.userLogin));
       //Navigator.pushAndRemoveUntil(event.context, MaterialPageRoute(builder: (context) => MyApp()), (route) => true);
     }
   }
